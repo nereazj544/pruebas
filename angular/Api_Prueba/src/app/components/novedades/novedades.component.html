@@ -1,0 +1,65 @@
+<div class="new-releases-container">
+    <!-- Sección de Comunidad -->
+    <div class="community-section">
+        <div class="search-container">
+            <h2>COMUNIDAD</h2>
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar..." (input)="onSearch($event)" class="search-input">
+                <button class="search-button" aria-label="Buscar">🔍</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección del Calendario -->
+    <div class="calendar-section">
+        <h2>CALENDARIO DE ESTRENOS</h2>
+
+        <!-- Filtros -->
+        <div class="filter-tabs">
+            <button *ngFor="let filter of filters" [class.active]="currentFilter === filter" (click)="setFilter(filter)"
+                class="filter-btn">
+                {{ filter }}
+            </button>
+        </div>
+
+        <!-- Plataformas (solo para videojuegos) -->
+        <div class="platforms" *ngIf="currentFilter === 'Videojuegos'">
+            <span class="platform-label">PLATAFORMAS:</span>
+            <div class="platform-buttons">
+                <button *ngFor="let platform of platforms" [class.active]="selectedPlatform === platform"
+                    (click)="setPlatform(platform)" class="platform-btn">
+                    {{ platform }}
+                </button>
+                <button class="platform-btn" [class.active]="selectedPlatform === 'TODAS'"
+                    (click)="setPlatform('TODAS')">
+                    TODAS
+                </button>
+            </div>
+        </div>
+
+        <!-- Carrusel de estrenos -->
+        <div class="releases-carousel">
+            <!-- <button class="nav-btn prev" (click)="previousSlide()" aria-label="Anterior">❮</button> -->
+
+            <div class="carousel-items">
+                <div class="release-item" *ngFor="let release of currentReleases">
+                    <div class="release-card">
+                        <img [src]="release.imageUrl" [alt]="release.title" class="release-image">
+                        <div class="release-info">
+                            <h3 class="release-title">{{ release.title }}</h3>
+                            <p class="release-date">
+                                {{ release.releaseDate | date:'MMM d, yyyy' }}
+                            </p>
+                            <p *ngIf="release.authors" class="release-authors">
+                                Por {{ release.authors.join(', ') }}
+                            </p>
+                            <p *ngIf="release.platform" class="release-platform">
+                                {{ release.platform }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

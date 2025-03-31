@@ -18,6 +18,7 @@
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.0",
     "express": "^4.21.2",
+    "mongo-db-prueba": "file:",
     "mongodb": "^6.15.0",
     "mongoose": "^8.13.1",
     "rxjs": "~7.8.0",

@@ -1,0 +1,24 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <label>Email:</label>
+    <input type="email" formControlName="email">
+    <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+      <small>Ingresa un email válido.</small>
+    </div>
+
+    <label>Contraseña:</label>
+    <input type="password" formControlName="password">
+    <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+      <small>La contraseña debe tener al menos 6 caracteres.</small>
+    </div>
+
+    <label>Selecciona tu rol:</label>
+    <select formControlName="role">
+      <option value="usuario">Usuario</option>
+      <option value="admin">Admin</option>
+      <option value="proveedor">Proveedor</option>
+    </select>
+    
+    <button type="submit" [disabled]="registerForm.invalid">Registrarse</button>
+
+    <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+</form>
